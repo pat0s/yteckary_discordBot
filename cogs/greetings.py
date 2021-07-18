@@ -6,7 +6,7 @@ class Greetings(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.command(aliases=['hi'])
     async def hello(self, ctx):
         name = ctx.author.name
         await ctx.send(f'Hi {name}!')
