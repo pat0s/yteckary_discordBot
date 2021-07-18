@@ -14,7 +14,7 @@ bot = commands.Bot(
 )
 
 # Extent bot functionality with cogs
-extensions = ['greetings', 'jokes']
+extensions = ['greetings', 'jokes', 'counter']
 for extension in extensions:
     bot.load_extension(f"cogs.{extension}")
 
