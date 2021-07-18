@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import random
 
 
 class Jokes(commands.Cog):
@@ -8,7 +9,16 @@ class Jokes(commands.Cog):
 
     @commands.command()
     async def drga(self, ctx):
-        await ctx.send(f'Áno, áno, áno, ... áno.')
+        one_liners = ['Áno, áno, áno, ... áno.',
+                      'Nie, nie, nie, ... nie.',
+                      'Dobre, dobre, dobre...'
+                      ]
+        one_liner = random.choice(one_liners)
+        await ctx.send(f'{one_liner}')
+
+    @commands.command()
+    async def little(self, ctx):
+        await ctx.send(":pinching_hand:")
 
 
 def setup(bot):
