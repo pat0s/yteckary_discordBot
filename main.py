@@ -14,8 +14,14 @@ bot = commands.Bot(
 )
 
 # Extent bot functionality with cogs
-extensions = ['greetings', 'jokes']
+extensions = ['greetings', 'jokes', 'counter']
 for extension in extensions:
     bot.load_extension(f"cogs.{extension}")
+
+
+@bot.event
+async def on_ready():
+    print('I\'m ready!')
+    print(f'My name is {bot.user.name}')
 
 bot.run(BOT_TOKEN)
