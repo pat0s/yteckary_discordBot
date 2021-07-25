@@ -6,7 +6,7 @@ from os.path import dirname, join
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+load_dotenv('../')
 CHOSEN = os.getenv('CHOSEN')
 
 
@@ -36,6 +36,16 @@ class Jokes(commands.Cog):
                 await message.channel.send(f'**{user.name}** má rád **VEĽKÉ kravy**.')
                 path = join(dirname(__file__), 'krava.gif')
                 await message.channel.send(file=discord.File(path))
+
+    @commands.command()
+    async def noice(self, ctx):
+        path = join(dirname(__file__), 'noice.gif')
+        await ctx.send(file=discord.File(path))
+
+    @commands.command()
+    async def play(self, ctx):
+        path = join(dirname(__file__), 'zvucka.wav')
+        await ctx.send(file=discord.File(path))
 
 
 def setup(bot):
