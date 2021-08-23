@@ -11,15 +11,10 @@ class Greetings(commands.Cog):
         name = ctx.author.name
         await ctx.send(f'Hi {name}!')
 
-    # TODO: say hello to new member
-    #       just in the concrete room
-
-    # from https://discordpy.readthedocs.io/en/master/ext/commands/cogs.html
-    @commands.Cog.listener()
-    async def on_member_join(self, member):
-        channel = member.guild.system_channel
-        if channel is not None:
-            await channel.send(f'Welcome {member.mention}.')
+    @commands.command()
+    async def goodmorning(self, ctx):
+        name = ctx.author.name
+        await ctx.send(f'Good morning **{name}** :)')
 
 
 def setup(bot):

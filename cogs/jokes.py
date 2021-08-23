@@ -6,7 +6,7 @@ from os.path import dirname, join
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+load_dotenv('../')
 CHOSEN = os.getenv('CHOSEN')
 
 
@@ -36,6 +36,42 @@ class Jokes(commands.Cog):
                 await message.channel.send(f'**{user.name}** má rád **VEĽKÉ kravy**.')
                 path = join(dirname(__file__), 'krava.gif')
                 await message.channel.send(file=discord.File(path))
+
+    @commands.command()
+    async def noice(self, ctx):
+        path = join(dirname(__file__), 'noice.gif')
+        await ctx.send(file=discord.File(path))
+
+    @commands.command()
+    async def play(self, ctx):
+        path = join(dirname(__file__), 'zvucka.wav')
+        await ctx.send(file=discord.File(path))
+
+    @commands.command(aliases=['vítomer'])
+    async def vitomer(self, ctx):
+        one_liners = ['Máš deň pod Víta.',
+                      'Na tvoju mentálnu úroveň sa len tak niekto nedostane.',
+                      'Máš IQ húpacieho koníka.',
+                      'Basic.',
+                      'Nemachruj aj ja som prešiel IQ testom.',
+                      'Za tvoju genialitu môže jedine výberová škola, na ktorú si chodil.'
+                      ]
+
+        iq = random.randrange(-100, 200, 1)
+        if iq < 0:
+            pos = 0
+        elif iq < 50:
+            pos = 1
+        elif iq < 100:
+            pos = 2
+        elif iq < 130:
+            pos = 3
+        elif iq < 150:
+            pos = 4
+        else:
+            pos = 5
+
+        await ctx.send(f'Tvoje IQ je {iq}. {one_liners[pos]}')
 
 
 def setup(bot):
