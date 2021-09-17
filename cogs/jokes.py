@@ -73,6 +73,11 @@ class Jokes(commands.Cog):
 
         await ctx.send(f'Tvoje IQ je {iq}. {one_liners[pos]}')
 
+    @commands.command(aliases=['prestíž'])
+    async def prestiz(self, ctx):
+        path = join(dirname(__file__), 'prestiz.gif')
+        await ctx.send(file=discord.File(path))
+
 
 def setup(bot):
     bot.add_cog(Jokes(bot))
