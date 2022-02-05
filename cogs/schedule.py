@@ -6,11 +6,7 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv('../')
-CHOSEN = os.getenv('CHOSEN')
-CHOSEN2 = os.getenv('CHOSEN2')
-CHOSEN3 = os.getenv('CHOSEN3')
-CHOSEN4 = os.getenv('CHOSEN4')
-CHOSEN5 = os.getenv('CHOSEN5')
+IMG_PATH = os.getenv("IMG_PATH")
 
 
 class Schedule(commands.Cog):
@@ -18,21 +14,27 @@ class Schedule(commands.Cog):
         self.bot = bot
 
     @commands.command(aliases=["schedule"])
-    async def rozvrh(self, ctx):
-        if ctx.author.id == int(CHOSEN):
-            path = join(dirname(__file__), 'pato.png')
+    async def rozvrh(self, ctx, arg=None):
+        if arg == "pato":
+            path = join(IMG_PATH, 'pato.png')
             await ctx.send(file=discord.File(path))
-        elif ctx.author.id == int(CHOSEN2):
-            path = join(dirname(__file__), 'dalibor.png')
+        elif arg == "dalibor":
+            path = join(IMG_PATH, 'dalibor.png')
             await ctx.send(file=discord.File(path))
-        elif ctx.author.id == int(CHOSEN3):
-            path = join(dirname(__file__), 'pato.png')
+        elif arg == "johny" or arg == "honza" or arg == "jan":
+            path = join(IMG_PATH, 'johny.png')
             await ctx.send(file=discord.File(path))
-        elif ctx.author.id == int(CHOSEN4):
-            path = join(dirname(__file__), 'marcel.png')
+        elif arg == "lukas":
+            path = join(IMG_PATH, 'lukas.png')
             await ctx.send(file=discord.File(path))
-        elif ctx.author.id == int(CHOSEN5):
-            path = join(dirname(__file__), 'johny.png')
+        elif arg == "marcel":
+            path = join(IMG_PATH, 'marcel.png')
+            await ctx.send(file=discord.File(path))
+        elif arg == "erika" or arg == "eri":
+            path = join(IMG_PATH, 'erika.png')
+            await ctx.send(file=discord.File(path))
+        elif arg is None:
+            path = join(IMG_PATH, f'{ctx.author.id}.png')
             await ctx.send(file=discord.File(path))
 
 
