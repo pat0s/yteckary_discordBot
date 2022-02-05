@@ -2,12 +2,13 @@ import discord
 from discord.ext import commands
 import random
 import os
-from os.path import dirname, join
+from os.path import join
 from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv('../')
 CHOSEN = os.getenv('CHOSEN')
+IMG_PATH = os.getenv('IMG_PATH')
 
 
 class Jokes(commands.Cog):
@@ -18,7 +19,23 @@ class Jokes(commands.Cog):
     async def drga(self, ctx):
         one_liners = ['Áno, áno, áno, ... áno.',
                       'Nie, nie, nie, ... nie.',
-                      'Dobre, dobre, dobre...'
+                      'Dobre, dobre, dobre...',
+                      'Sorry, sorry, sorry, sorry',
+                      'Čaute chalani...a dievčence, ak tu máme nejaké',
+                      'Astronóm drga',
+                      'Hviezdny prostitút.'
+                      ]
+        one_liner = random.choice(one_liners)
+        await ctx.send(f'{one_liner}')
+
+    @commands.command()
+    async def meduna(self, ctx):
+        await ctx.send("To je BOREC!")
+
+    @commands.command(aliases=['honza'])
+    async def cernocky(self, ctx):
+        one_liners = ['Drbu na to',
+                      'Vojel sem to padesát krát.'
                       ]
         one_liner = random.choice(one_liners)
         await ctx.send(f'{one_liner}')
@@ -34,17 +51,17 @@ class Jokes(commands.Cog):
         for user in mentioned:
             if user.id == int(CHOSEN):
                 await message.channel.send(f'**{user.name}** má rád **VEĽKÉ kravy**.')
-                path = join(dirname(__file__), 'krava.gif')
+                path = join(IMG_PATH, 'krava.gif')
                 await message.channel.send(file=discord.File(path))
 
     @commands.command()
     async def noice(self, ctx):
-        path = join(dirname(__file__), 'noice.gif')
+        path = join(IMG_PATH, 'noice.gif')
         await ctx.send(file=discord.File(path))
 
     @commands.command()
     async def play(self, ctx):
-        path = join(dirname(__file__), 'zvucka.wav')
+        path = join(IMG_PATH, 'zvucka.wav')
         await ctx.send(file=discord.File(path))
 
     @commands.command(aliases=['vítomer'])
@@ -55,6 +72,7 @@ class Jokes(commands.Cog):
                       'Basic.',
                       'Nemachruj aj ja som prešiel IQ testom.',
                       'Za tvoju genialitu môže jedine výberová škola, na ktorú si chodil.'
+
                       ]
 
         iq = random.randrange(-100, 200, 1)
@@ -75,7 +93,12 @@ class Jokes(commands.Cog):
 
     @commands.command(aliases=['prestíž'])
     async def prestiz(self, ctx):
-        path = join(dirname(__file__), 'prestiz.gif')
+        path = join(IMG_PATH, 'prestiz.gif')
+        await ctx.send(file=discord.File(path))
+
+    @commands.command(aliases=['zivot', 'vut', 'vutfit'])
+    async def fit(self, ctx):
+        path = join(IMG_PATH, 'fit.gif')
         await ctx.send(file=discord.File(path))
 
 
